@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style type="text/css">
+        *{margin:0px; padding:0px;}
+        body{font-size:14px;}
+        #app{width:1000px; margin:10px auto;}
+        #bigImg{float:left; margin-right:10px;}
+        .item{
+            width:380px;
+            line-height:30px;
+            box-sizing: border-box;
+            background:#f7f7f7;
+            border:1px solid #f7f7f7;
+            margin:10px 0px;
+            float:left;
+        }
+        .item img{vertical-align:middle; margin-right:10px;}
+        .select{ border:1px solid darkred;}
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <img id="bigImg"  :src="list[current].bigimg"/>
+    <p>颜色选择</p>
+    <div class="item" v-for="(item,index) in list" :class=[{'select':current==index}] @click="doClick(index)">
+        <img style="width: 50px;height: 50px" :src="item.bigimg" />
+        {{item.text}}
+    </div>
+</div>
+<script>
+   new Vue({
+       el:'#app',
+       data:function () {
+           return{
+               list:[{
+                   bigimg:'img/001.jpg',
+                   text:'定制雨伞定制logo广告伞长柄弯钩彩虹色16骨'
+               },{
+                   bigimg:'img/002.jpg',
+                   text:'定制雨伞定制logo广告伞长柄C型号黑色16骨'
+               },{
+                   bigimg:'img/003.jpg',
+                   text:'定制雨伞定制logo广告伞长柄C型号黄色16骨'
+               },{
+                   bigimg:'img/004.jpg',
+                   text:'定制雨伞定制logo广告伞长柄C型号天蓝色16骨'
+               }],
+               current:0
+           }
+       },
+       methods:{
+           doClick:function (index){
+               this.current = index
+           }
+       }
+   })
+</script>
+</body>
+</html>
